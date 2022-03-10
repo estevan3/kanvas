@@ -31,13 +31,15 @@ Running migrations:
   Applying authtoken.0003_tokenproxy... OK
   Applying courses.0001_initial... OK
   Applying courses.0002_initial... OK
+  Applying courses.0003_alter_course_demo_time... OK
+  Applying courses.0004_alter_course_created_at... OK
   Applying sessions.0001_initial... OK
 System check identified no issues (0 silenced).
 test_duplicate_email_user_creation_422 (test_api.TestAccountsRoutesWithoutAuthentication) ... ERROR
 test_instructor_user_creation_201 (test_api.TestAccountsRoutesWithoutAuthentication) ... ok
 test_list_users_by_instructor_200 (test_api.TestAccountsRoutesWithoutAuthentication) ... ok
-test_list_users_by_student_403 (test_api.TestAccountsRoutesWithoutAuthentication) ... FAIL
-test_list_users_with_no_token_401 (test_api.TestAccountsRoutesWithoutAuthentication) ... FAIL
+test_list_users_by_student_403 (test_api.TestAccountsRoutesWithoutAuthentication) ... ok
+test_list_users_with_no_token_401 (test_api.TestAccountsRoutesWithoutAuthentication) ... ok
 test_login_success_200 (test_api.TestAccountsRoutesWithoutAuthentication) ... ok
 test_login_with_invalid_credentials_401 (test_api.TestAccountsRoutesWithoutAuthentication) ... ok
 test_login_with_wrong_fields_400 (test_api.TestAccountsRoutesWithoutAuthentication) ... ok
@@ -46,38 +48,38 @@ test_wrong_data_user_creation_400 (test_api.TestAccountsRoutesWithoutAuthenticat
 test_address_creation_200 (test_api.TestAddress) ... FAIL
 test_address_creation_already_exists_200 (test_api.TestAddress) ... FAIL
 test_address_creation_wrong_data_400 (test_api.TestAddress) ... ok
-test_delete_course_by_instructor_204 (test_api.TestCourseDelete) ... ERROR
-test_delete_course_by_no_user_401 (test_api.TestCourseDelete) ... ERROR
-test_delete_course_by_student_403 (test_api.TestCourseDelete) ... ERROR
-test_delete_course_with_invalid_course_id_404 (test_api.TestCourseDelete) ... ERROR
-test_course_creation_by_instructor_201 (test_api.TestCoursesCreation) ... ERROR
-test_course_creation_by_no_user_401 (test_api.TestCoursesCreation) ... ERROR
-test_course_creation_by_student_403 (test_api.TestCoursesCreation) ... ERROR
-test_course_creation_duplicate_name_422 (test_api.TestCoursesCreation) ... ERROR
-test_course_creation_wrong_data_400 (test_api.TestCoursesCreation) ... ERROR
-test_list_courses_200 (test_api.TestCoursesCreation) ... ERROR
-test_retrieve_invalid_course_404 (test_api.TestCoursesCreation) ... ERROR
-test_retrieve_valid_course_200 (test_api.TestCoursesCreation) ... ERROR
+test_delete_course_by_instructor_204 (test_api.TestCourseDelete) ... ok
+test_delete_course_by_no_user_401 (test_api.TestCourseDelete) ... ok
+test_delete_course_by_student_403 (test_api.TestCourseDelete) ... ok
+test_delete_course_with_invalid_course_id_404 (test_api.TestCourseDelete) ... ok
+test_course_creation_by_instructor_201 (test_api.TestCoursesCreation) ... ok
+test_course_creation_by_no_user_401 (test_api.TestCoursesCreation) ... ok
+test_course_creation_by_student_403 (test_api.TestCoursesCreation) ... ok
+test_course_creation_duplicate_name_422 (test_api.TestCoursesCreation) ... ok
+test_course_creation_wrong_data_400 (test_api.TestCoursesCreation) ... FAIL
+test_list_courses_200 (test_api.TestCoursesCreation) ... ok
+test_retrieve_invalid_course_404 (test_api.TestCoursesCreation) ... ok
+test_retrieve_valid_course_200 (test_api.TestCoursesCreation) ... ok
 test_register_instructor_course_by_instructor_200 (test_api.TestCoursesRegister) ... ERROR
-test_register_instructor_course_by_no_user_401 (test_api.TestCoursesRegister) ... ERROR
-test_register_instructor_course_by_student_403 (test_api.TestCoursesRegister) ... ERROR
-test_register_instructor_course_with_invalid_id_404 (test_api.TestCoursesRegister) ... ERROR
-test_register_instructor_course_with_student_id_422 (test_api.TestCoursesRegister) ... ERROR
+test_register_instructor_course_by_no_user_401 (test_api.TestCoursesRegister) ... ok
+test_register_instructor_course_by_student_403 (test_api.TestCoursesRegister) ... ok
+test_register_instructor_course_with_invalid_id_404 (test_api.TestCoursesRegister) ... ok
+test_register_instructor_course_with_student_id_422 (test_api.TestCoursesRegister) ... ok
 test_register_instructor_course_with_wrong_field_400 (test_api.TestCoursesRegister) ... ERROR
-test_register_instructor_course_wrong_courseId_404 (test_api.TestCoursesRegister) ... ERROR
-test_register_students_course_by_intructor_200 (test_api.TestCoursesRegister) ... ERROR
-test_register_students_course_by_no_user_401 (test_api.TestCoursesRegister) ... ERROR
-test_register_students_course_by_student_403 (test_api.TestCoursesRegister) ... ERROR
-test_register_students_course_invalid_course_id_404 (test_api.TestCoursesRegister) ... ERROR
-test_register_students_course_with_instructor_id_422 (test_api.TestCoursesRegister) ... ERROR
-test_register_students_course_with_invalid_student_id_404 (test_api.TestCoursesRegister) ... ERROR
-test_register_students_course_with_wrong_field_400 (test_api.TestCoursesRegister) ... ERROR
-test_register_students_course_with_wrong_field_type_400 (test_api.TestCoursesRegister) ... ERROR
-test_update_course_by_instructor_200 (test_api.TestCoursesUpdate) ... ERROR
-test_update_course_by_no_user_401 (test_api.TestCoursesUpdate) ... ERROR
-test_update_course_by_student_403 (test_api.TestCoursesUpdate) ... ERROR
-test_update_course_with_conflict_422 (test_api.TestCoursesUpdate) ... ERROR
-test_update_invalid_course_404 (test_api.TestCoursesUpdate) ... ERROR
+test_register_instructor_course_wrong_courseId_404 (test_api.TestCoursesRegister) ... ok
+test_register_students_course_by_intructor_200 (test_api.TestCoursesRegister) ... ok
+test_register_students_course_by_no_user_401 (test_api.TestCoursesRegister) ... ok
+test_register_students_course_by_student_403 (test_api.TestCoursesRegister) ... ok
+test_register_students_course_invalid_course_id_404 (test_api.TestCoursesRegister) ... ok
+test_register_students_course_with_instructor_id_422 (test_api.TestCoursesRegister) ... ok
+test_register_students_course_with_invalid_student_id_404 (test_api.TestCoursesRegister) ... ok
+test_register_students_course_with_wrong_field_400 (test_api.TestCoursesRegister) ... ok
+test_register_students_course_with_wrong_field_type_400 (test_api.TestCoursesRegister) ... ok
+test_update_course_by_instructor_200 (test_api.TestCoursesUpdate) ... ok
+test_update_course_by_no_user_401 (test_api.TestCoursesUpdate) ... ok
+test_update_course_by_student_403 (test_api.TestCoursesUpdate) ... ok
+test_update_course_with_conflict_422 (test_api.TestCoursesUpdate) ... ok
+test_update_invalid_course_404 (test_api.TestCoursesUpdate) ... ok
 
 ======================================================================
 ERROR: test_duplicate_email_user_creation_422 (test_api.TestAccountsRoutesWithoutAuthentication)
@@ -117,7 +119,7 @@ Traceback (most recent call last):
     raise exc
   File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
     response = handler(request, *args, **kwargs)
-  File "/home/estevan/dev/Q4/e10-kanvas/users/views.py", line 48, in post
+  File "/home/estevan/dev/Q4/e10-kanvas/users/views.py", line 52, in post
     user = authenticate(email=serialized.data["email"], password=serialized.data["password"])
   File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/views/decorators/debug.py", line 42, in sensitive_variables_wrapper
     return func(*func_args, **func_kwargs)
@@ -150,340 +152,123 @@ Traceback (most recent call last):
 django.db.transaction.TransactionManagementError: An error occurred in the current transaction. You can't execute queries until the end of the 'atomic' block.
 
 ======================================================================
-ERROR: test_delete_course_by_instructor_204 (test_api.TestCourseDelete)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/estevan/dev/Q4/e10-kanvas/test_api.py", line 1072, in setUp
-    self.course_id = self.client.post("/api/courses/", self.course_data, format="json").json()["uuid"]
-  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
-
-======================================================================
-ERROR: test_delete_course_by_no_user_401 (test_api.TestCourseDelete)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/estevan/dev/Q4/e10-kanvas/test_api.py", line 1072, in setUp
-    self.course_id = self.client.post("/api/courses/", self.course_data, format="json").json()["uuid"]
-  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
-
-======================================================================
-ERROR: test_delete_course_by_student_403 (test_api.TestCourseDelete)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/estevan/dev/Q4/e10-kanvas/test_api.py", line 1072, in setUp
-    self.course_id = self.client.post("/api/courses/", self.course_data, format="json").json()["uuid"]
-  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
-
-======================================================================
-ERROR: test_delete_course_with_invalid_course_id_404 (test_api.TestCourseDelete)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/estevan/dev/Q4/e10-kanvas/test_api.py", line 1072, in setUp
-    self.course_id = self.client.post("/api/courses/", self.course_data, format="json").json()["uuid"]
-  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
-
-======================================================================
-ERROR: test_course_creation_by_instructor_201 (test_api.TestCoursesCreation)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/estevan/dev/Q4/e10-kanvas/test_api.py", line 252, in test_course_creation_by_instructor_201
-    output = response.json()
-  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
-
-======================================================================
-ERROR: test_course_creation_by_no_user_401 (test_api.TestCoursesCreation)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/estevan/dev/Q4/e10-kanvas/test_api.py", line 282, in test_course_creation_by_no_user_401
-    output = response.json()
-  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
-
-======================================================================
-ERROR: test_course_creation_by_student_403 (test_api.TestCoursesCreation)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/estevan/dev/Q4/e10-kanvas/test_api.py", line 268, in test_course_creation_by_student_403
-    output = response.json()
-  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
-
-======================================================================
-ERROR: test_course_creation_duplicate_name_422 (test_api.TestCoursesCreation)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/estevan/dev/Q4/e10-kanvas/test_api.py", line 300, in test_course_creation_duplicate_name_422
-    output = response.json()
-  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
-
-======================================================================
-ERROR: test_course_creation_wrong_data_400 (test_api.TestCoursesCreation)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/estevan/dev/Q4/e10-kanvas/test_api.py", line 317, in test_course_creation_wrong_data_400
-    output = response.json()
-  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
-
-======================================================================
-ERROR: test_list_courses_200 (test_api.TestCoursesCreation)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/estevan/dev/Q4/e10-kanvas/test_api.py", line 330, in test_list_courses_200
-    output = response.json()
-  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
-
-======================================================================
-ERROR: test_retrieve_invalid_course_404 (test_api.TestCoursesCreation)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/estevan/dev/Q4/e10-kanvas/test_api.py", line 373, in test_retrieve_invalid_course_404
-    output = response.json()
-  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
-
-======================================================================
-ERROR: test_retrieve_valid_course_200 (test_api.TestCoursesCreation)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/estevan/dev/Q4/e10-kanvas/test_api.py", line 355, in test_retrieve_valid_course_200
-    course = self.client.post("/api/courses/", self.course_data, format="json").json()
-  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
-
-======================================================================
 ERROR: test_register_instructor_course_by_instructor_200 (test_api.TestCoursesRegister)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/estevan/dev/Q4/e10-kanvas/test_api.py", line 609, in setUp
-    self.course_id = self.client.post("/api/courses/", self.course_data, format="json").json()["uuid"]
-  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/db/backends/sqlite3/base.py", line 477, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: courses_course.instructor_id
 
-======================================================================
-ERROR: test_register_instructor_course_by_no_user_401 (test_api.TestCoursesRegister)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/estevan/dev/Q4/e10-kanvas/test_api.py", line 609, in setUp
-    self.course_id = self.client.post("/api/courses/", self.course_data, format="json").json()["uuid"]
-  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
+The above exception was the direct cause of the following exception:
 
-======================================================================
-ERROR: test_register_instructor_course_by_student_403 (test_api.TestCoursesRegister)
-----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/estevan/dev/Q4/e10-kanvas/test_api.py", line 609, in setUp
-    self.course_id = self.client.post("/api/courses/", self.course_data, format="json").json()["uuid"]
-  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
-
-======================================================================
-ERROR: test_register_instructor_course_with_invalid_id_404 (test_api.TestCoursesRegister)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/estevan/dev/Q4/e10-kanvas/test_api.py", line 609, in setUp
-    self.course_id = self.client.post("/api/courses/", self.course_data, format="json").json()["uuid"]
-  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
-
-======================================================================
-ERROR: test_register_instructor_course_with_student_id_422 (test_api.TestCoursesRegister)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/estevan/dev/Q4/e10-kanvas/test_api.py", line 609, in setUp
-    self.course_id = self.client.post("/api/courses/", self.course_data, format="json").json()["uuid"]
-  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
+  File "/home/estevan/dev/Q4/e10-kanvas/test_api.py", line 646, in test_register_instructor_course_by_instructor_200
+    response = self.client.put(f"/api/courses/{course_id_2}/registrations/instructor/", body, format="json")
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 304, in put
+    response = super().put(
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 214, in put
+    return self.generic('PUT', path, data, content_type, **extra)
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 234, in generic
+    return super().generic(
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 541, in generic
+    return self.request(**r)
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 286, in request
+    return super().request(**kwargs)
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 238, in request
+    request = super().request(**kwargs)
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 810, in request
+    self.check_exception(response)
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 663, in check_exception
+    raise exc_value
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/views/generic/base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/estevan/dev/Q4/e10-kanvas/courses/views.py", line 95, in put
+    course.save()
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/db/models/base.py", line 806, in save
+    self.save_base(
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/db/models/base.py", line 857, in save_base
+    updated = self._save_table(
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/db/models/base.py", line 970, in _save_table
+    updated = self._do_update(
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/db/models/base.py", line 1034, in _do_update
+    return filtered._update(values) > 0
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/db/models/query.py", line 885, in _update
+    return query.get_compiler(self.db).execute_sql(CURSOR)
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1783, in execute_sql
+    cursor = super().execute_sql(result_type)
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1361, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/db/backends/sqlite3/base.py", line 477, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: courses_course.instructor_id
 
 ======================================================================
 ERROR: test_register_instructor_course_with_wrong_field_400 (test_api.TestCoursesRegister)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/home/estevan/dev/Q4/e10-kanvas/test_api.py", line 609, in setUp
-    self.course_id = self.client.post("/api/courses/", self.course_data, format="json").json()["uuid"]
-  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
-
-======================================================================
-ERROR: test_register_instructor_course_wrong_courseId_404 (test_api.TestCoursesRegister)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/estevan/dev/Q4/e10-kanvas/test_api.py", line 609, in setUp
-    self.course_id = self.client.post("/api/courses/", self.course_data, format="json").json()["uuid"]
-  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
-
-======================================================================
-ERROR: test_register_students_course_by_intructor_200 (test_api.TestCoursesRegister)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/estevan/dev/Q4/e10-kanvas/test_api.py", line 609, in setUp
-    self.course_id = self.client.post("/api/courses/", self.course_data, format="json").json()["uuid"]
-  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
-
-======================================================================
-ERROR: test_register_students_course_by_no_user_401 (test_api.TestCoursesRegister)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/estevan/dev/Q4/e10-kanvas/test_api.py", line 609, in setUp
-    self.course_id = self.client.post("/api/courses/", self.course_data, format="json").json()["uuid"]
-  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
-
-======================================================================
-ERROR: test_register_students_course_by_student_403 (test_api.TestCoursesRegister)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/estevan/dev/Q4/e10-kanvas/test_api.py", line 609, in setUp
-    self.course_id = self.client.post("/api/courses/", self.course_data, format="json").json()["uuid"]
-  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
-
-======================================================================
-ERROR: test_register_students_course_invalid_course_id_404 (test_api.TestCoursesRegister)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/estevan/dev/Q4/e10-kanvas/test_api.py", line 609, in setUp
-    self.course_id = self.client.post("/api/courses/", self.course_data, format="json").json()["uuid"]
-  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
-
-======================================================================
-ERROR: test_register_students_course_with_instructor_id_422 (test_api.TestCoursesRegister)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/estevan/dev/Q4/e10-kanvas/test_api.py", line 609, in setUp
-    self.course_id = self.client.post("/api/courses/", self.course_data, format="json").json()["uuid"]
-  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
-
-======================================================================
-ERROR: test_register_students_course_with_invalid_student_id_404 (test_api.TestCoursesRegister)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/estevan/dev/Q4/e10-kanvas/test_api.py", line 609, in setUp
-    self.course_id = self.client.post("/api/courses/", self.course_data, format="json").json()["uuid"]
-  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
-
-======================================================================
-ERROR: test_register_students_course_with_wrong_field_400 (test_api.TestCoursesRegister)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/estevan/dev/Q4/e10-kanvas/test_api.py", line 609, in setUp
-    self.course_id = self.client.post("/api/courses/", self.course_data, format="json").json()["uuid"]
-  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
-
-======================================================================
-ERROR: test_register_students_course_with_wrong_field_type_400 (test_api.TestCoursesRegister)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/estevan/dev/Q4/e10-kanvas/test_api.py", line 609, in setUp
-    self.course_id = self.client.post("/api/courses/", self.course_data, format="json").json()["uuid"]
-  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
-
-======================================================================
-ERROR: test_update_course_by_instructor_200 (test_api.TestCoursesUpdate)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/estevan/dev/Q4/e10-kanvas/test_api.py", line 409, in setUp
-    self.course_id = self.client.post("/api/courses/", self.course_data, format="json").json()["uuid"]
-  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
-
-======================================================================
-ERROR: test_update_course_by_no_user_401 (test_api.TestCoursesUpdate)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/estevan/dev/Q4/e10-kanvas/test_api.py", line 409, in setUp
-    self.course_id = self.client.post("/api/courses/", self.course_data, format="json").json()["uuid"]
-  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
-
-======================================================================
-ERROR: test_update_course_by_student_403 (test_api.TestCoursesUpdate)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/estevan/dev/Q4/e10-kanvas/test_api.py", line 409, in setUp
-    self.course_id = self.client.post("/api/courses/", self.course_data, format="json").json()["uuid"]
-  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
-
-======================================================================
-ERROR: test_update_course_with_conflict_422 (test_api.TestCoursesUpdate)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/estevan/dev/Q4/e10-kanvas/test_api.py", line 409, in setUp
-    self.course_id = self.client.post("/api/courses/", self.course_data, format="json").json()["uuid"]
-  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
-
-======================================================================
-ERROR: test_update_invalid_course_404 (test_api.TestCoursesUpdate)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/estevan/dev/Q4/e10-kanvas/test_api.py", line 409, in setUp
-    self.course_id = self.client.post("/api/courses/", self.course_data, format="json").json()["uuid"]
-  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 748, in _parse_json
-    raise ValueError(
-ValueError: Content-Type header is "text/html", not "application/json"
-
-======================================================================
-FAIL: test_list_users_by_student_403 (test_api.TestAccountsRoutesWithoutAuthentication)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/estevan/dev/Q4/e10-kanvas/test_api.py", line 177, in test_list_users_by_student_403
-    self.assertEqual(response.status_code, 403)
-AssertionError: 200 != 403
-
-======================================================================
-FAIL: test_list_users_with_no_token_401 (test_api.TestAccountsRoutesWithoutAuthentication)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/estevan/dev/Q4/e10-kanvas/test_api.py", line 185, in test_list_users_with_no_token_401
-    self.assertEqual(response.status_code, 401)
-AssertionError: 200 != 401
+  File "/home/estevan/dev/Q4/e10-kanvas/test_api.py", line 800, in test_register_instructor_course_with_wrong_field_400
+    response = self.client.put(f"/api/courses/{course_id}/registrations/instructor/", body, format="json")
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 304, in put
+    response = super().put(
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 214, in put
+    return self.generic('PUT', path, data, content_type, **extra)
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 234, in generic
+    return super().generic(
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 541, in generic
+    return self.request(**r)
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 286, in request
+    return super().request(**kwargs)
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/rest_framework/test.py", line 238, in request
+    request = super().request(**kwargs)
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 810, in request
+    self.check_exception(response)
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/test/client.py", line 663, in check_exception
+    raise exc_value
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/django/views/generic/base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/estevan/dev/Q4/e10-kanvas/venv/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/estevan/dev/Q4/e10-kanvas/courses/views.py", line 89, in put
+    instructor = User.objects.get(uuid=request.data['instructor_id'])
+KeyError: 'instructor_id'
 
 ======================================================================
 FAIL: test_address_creation_200 (test_api.TestAddress)
@@ -501,8 +286,16 @@ Traceback (most recent call last):
     self.assertEqual(response.status_code, 200)
 AssertionError: 201 != 200
 
+======================================================================
+FAIL: test_course_creation_wrong_data_400 (test_api.TestCoursesCreation)
 ----------------------------------------------------------------------
-Ran 45 tests in 13.546s
+Traceback (most recent call last):
+  File "/home/estevan/dev/Q4/e10-kanvas/test_api.py", line 319, in test_course_creation_wrong_data_400
+    self.assertEqual(response.status_code, 400)
+AssertionError: 422 != 400
 
-FAILED (failures=4, errors=33)
+----------------------------------------------------------------------
+Ran 45 tests in 16.693s
+
+FAILED (failures=3, errors=3)
 Destroying test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...

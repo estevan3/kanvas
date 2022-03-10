@@ -1,4 +1,5 @@
 from multiprocessing import AuthenticationError
+from django.db import IntegrityError
 from django.shortcuts import render
 from django.utils import timezone
 
@@ -19,20 +20,23 @@ class CourseView(APIView):
   permission_classes = [IsAdmin]
   
   def post(self, request):
-    instructor = User.objects.get(uuid=request.user.uuid)
-    data = request.data
-    data['created_at'] = timezone.now()
-    serialized = CourseSerializer(data=data)
-    
-    print(serialized.is_valid())
+    try:
+      instructor = User.objects.get(uuid=request.user.uuid)
+      data = request.data
+      data['created_at'] = timezone.now()
+      serialized = CourseSerializer(data=data)
+      
+      serialized.is_valid()
 
-    course = Course.objects.create(**serialized.validated_data)
-    course.instructor = instructor
+      course = Course.objects.create(**serialized.validated_data)
+      course.instructor = instructor
 
-    course = Course.objects.get(uuid=course.uuid)
-    serialized = CourseSerializer(course)
-    
-    return Response(serialized.data, status=status.HTTP_201_CREATED)
+      course = Course.objects.get(uuid=course.uuid)
+      serialized = CourseSerializer(course)
+      
+      return Response(serialized.data, status=status.HTTP_201_CREATED)
+    except IntegrityError:
+      return Response({'message': 'Course already exists'}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
   def get(self, request, course_id=''):
     try:
@@ -67,13 +71,13 @@ class CourseView(APIView):
       return Response(serialized.data)
     except Course.DoesNotExist:
       return Response({"message": "Course does not exist"}, status=status.HTTP_404_NOT_FOUND)
+    except IntegrityError:
+      return Response({"message": "This course name already exists"}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
   
   def delete(self, request, course_id=''):
     try:
       course = Course.objects.get(uuid=course_id)
       info = course.delete()
-
-      print(type(info), info)
 
       return Response(status=status.HTTP_204_NO_CONTENT)
     except Course.DoesNotExist:
@@ -102,10 +106,16 @@ class CourseView(APIView):
       return Response({"message": "Instructor id does not belong to an admin"}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
 class CourseStudantsView(APIView):
+  authentication_classes = [TokenAuthentication]
+  permission_classes = [IsAdmin]
+
   def put(self, request, course_id):
     try:
       course = Course.objects.get(uuid=course_id)
       students_id = request.data['students_id']
+
+      if type(students_id) != list:
+        raise TypeError()
       
       students = []
       for student_id in students_id:
@@ -127,3 +137,7 @@ class CourseStudantsView(APIView):
       return Response({"message": "Course does not exist"}, status=status.HTTP_404_NOT_FOUND)
     except User.DoesNotExist:
       return Response({"message": "Invalid students_id list"}, status=status.HTTP_404_NOT_FOUND)
+    except KeyError:
+      return Response({"students_id": "students_id field required"}, status=status.HTTP_400_BAD_REQUEST)
+    except TypeError:
+      return Response({"students_id": "expected type of students id field: list (array)"}, status=status.HTTP_400_BAD_REQUEST)

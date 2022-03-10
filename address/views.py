@@ -43,7 +43,6 @@ class AddressView(APIView):
       return Response(serialized.data)
 
     address = Address.objects.all()
-    print(address[0].users)
     serialized = AddressSerializer(address, many=True)
 
     return Response(serialized.data)
