@@ -7,8 +7,8 @@ from users.models import User
 class Course(models.Model):
   uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
   name = models.CharField(max_length=255, unique=True)
-  demo_time = models.DateField()
-  created_at = models.DateField()
+  demo_time = models.TimeField()
+  created_at = models.DateTimeField()
   link_repo = models.CharField(max_length=255)
 
   instructor = models.OneToOneField(User, on_delete=models.CASCADE, related_name='course', null=True)
