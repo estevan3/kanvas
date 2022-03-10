@@ -3,6 +3,8 @@ from django.utils import timezone
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 import uuid
 
+from address.models import Address
+
 # Create your models here.
 class CustomUserManeger(BaseUserManager):
   def _create_user(self, email, password, first_name, last_name, is_staff, is_superuser, is_admin=False, **extra_fields):
@@ -36,6 +38,8 @@ class User(AbstractUser):
   first_name = models.CharField(max_length=255)
   last_name = models.CharField(max_length=255)
   username = models.CharField(unique=False, null=True, max_length=255)
+
+  address = models.ForeignKey(Address, on_delete=models.CASCADE, related_name="users", null=True)
 
   USERNAME_FIELD = 'email'
   REQUIRED_FIELDS = ['first_name', 'last_name']
