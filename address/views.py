@@ -8,13 +8,14 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 
 from address.models import Address
+from address.permissions import IsAdmin
 from address.serializers import AddressSerializer
 from users.models import User
 
 # Create your views here.
 class AddressView(APIView):
   authentication_classes = [TokenAuthentication]
-  permission_classes = [IsAuthenticated]
+  permission_classes = [IsAuthenticated, IsAdmin]
 
   def put(self, request):
     try:

@@ -1,4 +1,3 @@
-from doctest import UnexpectedException
 from multiprocessing import AuthenticationError
 from django.shortcuts import render
 from django.utils import timezone
@@ -10,14 +9,14 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
 from courses.models import Course
+from courses.permissions import IsAdmin
 from courses.serializers import CourseSerializer
 from users.models import User
-from users.serializers import UserSerializer
 
 # Create your views here.
 class CourseView(APIView):
   authentication_classes = [TokenAuthentication]
-  permission_classes = [IsAuthenticated, IsAdminUser]
+  permission_classes = [IsAdmin]
   
   def post(self, request):
     instructor = User.objects.get(uuid=request.user.uuid)
@@ -36,32 +35,38 @@ class CourseView(APIView):
     return Response(serialized.data, status=status.HTTP_201_CREATED)
 
   def get(self, request, course_id=''):
-    if course_id:
-      course = Course.objects.get(uuid=course_id)
-      serialized = CourseSerializer(course)
-      return Response(serialized.data)
+    try:
+      if course_id:
+        course = Course.objects.get(uuid=course_id)
+        serialized = CourseSerializer(course)
+        return Response(serialized.data)
+    except Course.DoesNotExist:
+      return Response({"message": "Course does not exist"}, status=status.HTTP_404_NOT_FOUND)
     
     courses = Course.objects.all()
     serialized = CourseSerializer(courses, many=True)
     return Response(serialized.data)
 
   def patch(self, request, course_id=''):
-    course = Course.objects.get(uuid=course_id)
+    try:
+      course = Course.objects.get(uuid=course_id)
 
-    serialized = CourseSerializer(data=request.data, partial=True)
-    serialized.is_valid()
+      serialized = CourseSerializer(data=request.data, partial=True)
+      serialized.is_valid()
 
-    data = {**serialized.validated_data}
+      data = {**serialized.validated_data}
 
-    for key in data.keys():
-      course.__dict__[key] = data[key]
-    
-    course.save()
+      for key in data.keys():
+        course.__dict__[key] = data[key]
+      
+      course.save()
 
-    course = Course.objects.get(uuid=course_id)
-    serialized = CourseSerializer(course)
+      course = Course.objects.get(uuid=course_id)
+      serialized = CourseSerializer(course)
 
-    return Response(serialized.data)
+      return Response(serialized.data)
+    except Course.DoesNotExist:
+      return Response({"message": "Course does not exist"}, status=status.HTTP_404_NOT_FOUND)
   
   def delete(self, request, course_id=''):
     try:
@@ -75,15 +80,26 @@ class CourseView(APIView):
       return Response({"message": "Course does not exist"}, status=status.HTTP_404_NOT_FOUND)
 
   def put(self, request, course_id):
-    course = Course.objects.get(uuid=course_id)
-    instructor = User.objects.get(uuid=request.data['instructor_id'])
-    course.instructor = instructor
-    course.save()
+    try:
+      course = Course.objects.get(uuid=course_id)
+      instructor = User.objects.get(uuid=request.data['instructor_id'])
 
-    course = Course.objects.get(uuid=course_id)
-    serialized = CourseSerializer(course)
+      if not instructor.__dict__['is_admin']:
+        raise AuthenticationError
 
-    return Response(serialized.data)
+      course.instructor = instructor
+      course.save()
+
+      course = Course.objects.get(uuid=course_id)
+      serialized = CourseSerializer(course)
+
+      return Response(serialized.data)
+    except Course.DoesNotExist:
+      return Response({"message": "Course does not exist"}, status=status.HTTP_404_NOT_FOUND)
+    except User.DoesNotExist:
+      return Response({"message": "Invalid instructor_id"}, status=status.HTTP_404_NOT_FOUND)
+    except AuthenticationError:
+      return Response({"message": "Instructor id does not belong to an admin"}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
 class CourseStudantsView(APIView):
   def put(self, request, course_id):
@@ -91,9 +107,9 @@ class CourseStudantsView(APIView):
       course = Course.objects.get(uuid=course_id)
       students_id = request.data['students_id']
       
-      students = User.objects.all()
-
-      students = [student for student in students if str(student.__dict__['uuid']) in students_id]
+      students = []
+      for student_id in students_id:
+        students.append(User.objects.get(uuid=student_id))
 
       for student in students:
         if student.__dict__['is_admin']:
@@ -109,3 +125,5 @@ class CourseStudantsView(APIView):
       return Response({"message": error.args[0]}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
     except Course.DoesNotExist:
       return Response({"message": "Course does not exist"}, status=status.HTTP_404_NOT_FOUND)
+    except User.DoesNotExist:
+      return Response({"message": "Invalid students_id list"}, status=status.HTTP_404_NOT_FOUND)

@@ -4,14 +4,18 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.authentication import authenticate
+from rest_framework.authentication import authenticate, TokenAuthentication
 from rest_framework.authtoken.models import Token
 
 from users.models import User
+from users.permissions import IsAdmin
 from users.serializers import LoginSerializer, UserSerializer
 
 # Create your views here.
 class UserView(APIView):
+  authentication_classes = [TokenAuthentication]
+  permission_classes = [IsAdmin]
+  
   def post(self, request):
     try:
       serialized = UserSerializer(data=request.data)
